@@ -120,6 +120,16 @@ class TestDirConfig:
 
 
 class TestMakeDirConfig:
+    def test_module_is_detected(self):
+        config = make_dirconfig("TestConfig", {})
+
+        assert config.__module__ == __name__
+
+    def test_module_can_be_overridden(self):
+        config = make_dirconfig("TestConfig", {}, module="custom.module")
+
+        assert config.__module__ == "custom.module"
+
     def test_from_dict(self):
         register_handler("simple", SimpleHandler, extensions=[".json"])
         config = make_dirconfig(

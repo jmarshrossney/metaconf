@@ -4,7 +4,7 @@ build-backend = "uv_build"
 
 [project]
 name = "dirconf"
-version = "0.6.0"
+version = "0.6.1"
 description = "Build declarative schemas for multi-file configuration directories using Python dataclasses, with dict-based read and write."
 authors = [
     { name = "Joe Marsh Rossney", email = "17361029+jmarshrossney@users.noreply.github.com" }
@@ -93,3 +93,5 @@ select = [
 [tool.ruff.lint.pydocstyle]
 convention = "google"
 
+[tool.uv]
+exclude-newer = "1 week"

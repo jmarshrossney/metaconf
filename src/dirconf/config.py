@@ -1,4 +1,5 @@
 import dataclasses
+import inspect
 import json
 import logging
 import os
@@ -363,6 +364,13 @@ def make_dirconfig(
     Returns:
       DirConfigSubclass: The resulting subclass of `DirConfig`.
     """
+    frame = inspect.currentframe()
+    if frame is not None and frame.f_back is not None:
+        caller_module = frame.f_back.f_globals.get("__name__")
+        if caller_module is not None:
+            kwargs.setdefault("module", caller_module)
+    del frame
+
     if isinstance(spec, dict):
         return _make_dirconfig(cls_name, spec, **kwargs)
 

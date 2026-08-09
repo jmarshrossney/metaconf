@@ -161,6 +161,17 @@ class TestFilterWriteOnClassBypassesFilter:
 
 
 class TestFilter:
+    def test_filter_preserves_module(self):
+        @filter(read=lambda path: True)
+        class FilteredHandler:
+            def read(self, path):
+                return "data"
+
+            def write(self, path, data, *, overwrite_ok=False):
+                pass
+
+        assert FilteredHandler.__module__ == __name__
+
     def test_filter_with_read_only(self):
         @filter(read=lambda path: True)
         class FilteredHandler:

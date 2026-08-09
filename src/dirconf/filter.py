@@ -164,6 +164,7 @@ def filter(
 
         FilteredHandler.__name__ = cls.__name__  # type: ignore[attr-defined]
         FilteredHandler.__qualname__ = cls.__qualname__  # type: ignore[attr-defined]
+        FilteredHandler.__module__ = cls.__module__  # type: ignore[attr-defined]
         FilteredHandler._filter_missing = True  # type: ignore[attr-defined]
 
         return FilteredHandler  # type: ignore[return-value]
